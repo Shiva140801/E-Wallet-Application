@@ -21,7 +21,7 @@ public class AuditorConfig implements AuditorAware<UUID> {
 
     @Override
     public Optional<UUID> getCurrentAuditor() {
-
-        return Optional.of(UUID.randomUUID());
+        UUID userId = utilService.getCurrentUserId();
+        return Optional.ofNullable(userId);
     }
 }
