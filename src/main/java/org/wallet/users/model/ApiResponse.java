@@ -3,8 +3,6 @@ package org.wallet.users.model;
 
 import org.springframework.http.HttpStatus;
 
-import java.time.LocalDateTime;
-
 
 public record ApiResponse<T>(Status status,
                              int code,

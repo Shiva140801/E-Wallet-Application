@@ -2,13 +2,8 @@ package org.wallet.users.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-
 import java.util.UUID;
 
-/**
- * Represents a user in the system
- */
 @Entity
 @Table(name = "users")
 @Getter
