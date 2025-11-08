@@ -10,9 +10,7 @@ import org.wallet.users.model.User;
 import org.wallet.users.model.UserRole;
 import org.wallet.users.repo.UserRepository;
 import org.wallet.users.repo.UserRoleRepository;
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         List<SimpleGrantedAuthority> authorities = userRoles.stream()
                 .map(userRole -> new SimpleGrantedAuthority(userRole.getRole().getName()))
-                .collect(Collectors.toList());
+                .toList();
 
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),

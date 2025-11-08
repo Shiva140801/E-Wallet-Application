@@ -16,7 +16,6 @@ import org.wallet.users.repo.*;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -26,8 +25,6 @@ public class UserService {
     private final CustomUserDetailsService customUserDetailsService;
     private final JwtUtil jwtTokenProvider;
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final UserRoleRepository userRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
     public String login(LoginRequest loginRequest) {
@@ -75,7 +72,6 @@ public class UserService {
                 .build();
 
         return userRepository.save(newUser);
-
 
     }
 }

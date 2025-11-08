@@ -16,7 +16,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(@RequestBody @Valid LoginRequest loginRequest) {
+    public ResponseEntity<ApiResponse<String>> login(@Valid @RequestBody LoginRequest loginRequest) {
         String token = userService.login(loginRequest);
 
         ApiResponse<String> response = ApiResponse.success(token, "Login successful");
@@ -28,11 +28,9 @@ public class UserController {
 
 
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponse<User>> signup(@RequestBody @Valid SignupRequest signupRequest) {
+    public ResponseEntity<ApiResponse<User>> signup(@Valid @RequestBody SignupRequest signupRequest) {
         User user = userService.signup(signupRequest);
-
         ApiResponse<User> response = ApiResponse.created(user, "SignUp successful");
-
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
