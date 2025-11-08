@@ -1,6 +1,7 @@
 package org.wallet.service;
 
 import org.wallet.dto.WalletBalanceResponseDTO;
+import org.wallet.exception.ResourceNotFoundException;
 import org.wallet.exception.exception;
 import org.wallet.model.WalletDetails;
 import org.wallet.repository.WalletDetailsRepository;
@@ -68,7 +69,7 @@ class WalletServiceTest {
         when(walletDetailsRepository.findByUserIdAndIsActiveTrue(userId))
                 .thenReturn(Optional.empty());
 
-        assertThrows(exception.class, () -> walletService.getWalletBalance(userId));
+        assertThrows(ResourceNotFoundException.class, () -> walletService.getWalletBalance(userId));
 
         verify(walletDetailsRepository, times(1))
                 .findByUserIdAndIsActiveTrue(userId);

@@ -1,7 +1,7 @@
 package org.wallet.service;
 
 import org.wallet.dto.WalletBalanceResponseDTO;
-import org.wallet.exception.exception;
+import org.wallet.exception.ResourceNotFoundException;
 import org.wallet.model.WalletDetails;
 import org.wallet.repository.WalletDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class WalletService {
 
     public WalletBalanceResponseDTO getWalletBalance(UUID userId) {
         WalletDetails wallet = walletDetailsRepository.findByUserIdAndIsActiveTrue(userId)
-                .orElseThrow(() -> new exception("Active wallet not found for user: " + userId));
+                .orElseThrow(() -> new ResourceNotFoundException("Active wallet not found for user: " + userId));
 
         WalletBalanceResponseDTO.WalletData data = WalletBalanceResponseDTO.WalletData.builder()
                 .walletId(wallet.getId())
